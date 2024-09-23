@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Add your styles here */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; 
+            color: black; /* Text color */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #323030;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(10, 8, 8, 0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black; /* Black font for links */
+            font-size: 18px;
+            font-weight: normal; /* Thinner font */
+            padding: 10px;
+        }
+        nav a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+        footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 20px;
+            background-color: #403c3c; /* Light footer background */
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+
+    <nav>
+        <a href="/biography">Biography</a>
+        <a href="/prediction">Fetal Health Prediction</a>
+        <a href="/resume">Resume</a>
+        <a href="/projects">General Projects</a>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Jivan Adhikari | All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>

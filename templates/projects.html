@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block title %}General Projects - Jivan Adhikari{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-image: url("{{ url_for('static', filename='images/general projects.jpeg') }}");
+        background-size: cover; /* Cover the entire background */
+        background-position: center; /* Center the image */
+        height: 100vh; /* Full viewport height */
+        margin: 0; /* Remove default margin */
+    }
+    .projects-container {
+        max-width: 900px;
+        margin: 30px auto;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    ul li {
+        margin-bottom: 10px;
+    }
+    ul li a {
+        font-size: 18px;
+        color: #007BFF;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    ul li a:hover {
+        text-decoration: underline;
+    }
+    p {
+        font-size: 16px;
+    }
+    .pdf-link {
+        font-size: 18px;
+        color: #007BFF;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .pdf-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="projects-container">
+    <h2>GitHub Projects</h2>
+    <ul>
+        <li><a href="https://github.com/Jehadhk/Student-s-Grade" target="_blank">Student Performance</a></li>
+    </ul>
+
+    <h2>PDF Project</h2>
+    <p>Here is a project presented as a PDF:</p>
+    <a href="{{ url_for('static', filename='docs/project.pdf') }}" class="pdf-link" target="_blank">Screen Time</a>
+</div>
+{% endblock %}

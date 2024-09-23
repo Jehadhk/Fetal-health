@@ -1,0 +1,148 @@
+{% extends "layout.html" %}
+{% block title %}Fetal Health Prediction{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-image: url("{{ url_for('static', filename='images/fetal_image.jpg') }}") !important;
+        background-size: cover; /* Cover the entire background */
+        background-position: center; /* Center the image */
+    }
+    .prediction-content {
+        background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        max-width: 900px;
+        margin: 30px auto;
+        color: #333;
+    }
+    h1 {
+        text-align: center;
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+    form {
+        margin: 20px 0;
+    }
+    label {
+        display: block;
+        margin: 10px 0 5px;
+        font-weight: 600; /* Bolder font for labels */
+        color: #333;
+    }
+    input[type="number"], input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px; /* Slightly larger font size */
+    }
+    input[type="number"] {
+        background-color: #f9f9f9; /* Light gray for input fields */
+    }
+    input[type="submit"] {
+        background-color: #007BFF; /* Blue */
+        color: white;
+        font-weight: 600; /* Bolder font for button */
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #0056b3; /* Darker blue */
+    }
+    .result {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent result background */
+        color: black;
+        text-align: center; /* Center align the result text */
+    }
+    footer {
+        text-align: center;
+        margin-top: auto;
+        padding: 20px;
+        background-color: #E0E0E0; /* Light gray */
+        color: black;
+    }
+</style>
+
+<div class="prediction-content">
+    <h1>Fetal Health Prediction Model</h1>
+    <form action="/predict" method="post">
+        <label for="baseline_value">Baseline Value:</label>
+        <input type="number" step="any" id="baseline_value" name="baseline_value" required>
+
+        <label for="accelerations">Accelerations:</label>
+        <input type="number" step="any" id="accelerations" name="accelerations" required>
+
+        <label for="fetal_movement">Fetal Movement:</label>
+        <input type="number" step="any" id="fetal_movement" name="fetal_movement" required>
+
+        <label for="uterine_contractions">Uterine Contractions:</label>
+        <input type="number" step="any" id="uterine_contractions" name="uterine_contractions" required>
+
+        <label for="light_decelerations">Light Decelerations:</label>
+        <input type="number" step="any" id="light_decelerations" name="light_decelerations" required>
+
+        <label for="severe_decelerations">Severe Decelerations:</label>
+        <input type="number" step="any" id="severe_decelerations" name="severe_decelerations" required>
+
+        <label for="prolongued_decelerations">Prolongued Decelerations:</label>
+        <input type="number" step="any" id="prolongued_decelerations" name="prolongued_decelerations" required>
+
+        <label for="abnormal_short_term_variability">Abnormal Short-Term Variability:</label>
+        <input type="number" step="any" id="abnormal_short_term_variability" name="abnormal_short_term_variability" required>
+
+        <label for="mean_value_of_short_term_variability">Mean Value of Short-Term Variability:</label>
+        <input type="number" step="any" id="mean_value_of_short_term_variability" name="mean_value_of_short_term_variability" required>
+
+        <label for="percentage_of_time_with_abnormal_long_term_variability">Percentage of Time with Abnormal Long-Term Variability:</label>
+        <input type="number" step="any" id="percentage_of_time_with_abnormal_long_term_variability" name="percentage_of_time_with_abnormal_long_term_variability" required>
+
+        <label for="mean_value_of_long_term_variability">Mean Value of Long-Term Variability:</label>
+        <input type="number" step="any" id="mean_value_of_long_term_variability" name="mean_value_of_long_term_variability" required>
+
+        <label for="histogram_width">Histogram Width:</label>
+        <input type="number" step="any" id="histogram_width" name="histogram_width" required>
+
+        <label for="histogram_min">Histogram Min:</label>
+        <input type="number" step="any" id="histogram_min" name="histogram_min" required>
+
+        <label for="histogram_max">Histogram Max:</label>
+        <input type="number" step="any" id="histogram_max" name="histogram_max" required>
+
+        <label for="histogram_number_of_peaks">Histogram Number of Peaks:</label>
+        <input type="number" step="any" id="histogram_number_of_peaks" name="histogram_number_of_peaks" required>
+
+        <label for="histogram_number_of_zeroes">Histogram Number of Zeroes:</label>
+        <input type="number" step="any" id="histogram_number_of_zeroes" name="histogram_number_of_zeroes" required>
+
+        <label for="histogram_mode">Histogram Mode:</label>
+        <input type="number" step="any" id="histogram_mode" name="histogram_mode" required>
+
+        <label for="histogram_mean">Histogram Mean:</label>
+        <input type="number" step="any" id="histogram_mean" name="histogram_mean" required>
+
+        <label for="histogram_median">Histogram Median:</label>
+        <input type="number" step="any" id="histogram_median" name="histogram_median" required>
+
+        <label for="histogram_variance">Histogram Variance:</label>
+        <input type="number" step="any" id="histogram_variance" name="histogram_variance" required>
+
+        <label for="histogram_tendency">Histogram Tendency:</label>
+        <input type="number" step="any" id="histogram_tendency" name="histogram_tendency" required>
+
+        <input type="submit" value="Predict">
+    </form>
+    <div class="result">
+        <h2>Prediction Result</h2>
+        <p>{{ prediction if prediction else "Awaiting result..." }}</p>
+    </div>
+</div>
+
+<footer>
+</footer>
+{% endblock %}

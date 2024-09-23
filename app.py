@@ -1,53 +1,31 @@
-from flask import Flask, request, render_template
-import pickle
-import numpy as np
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# Load your trained model
-with open('model.pkl', 'rb') as model_file:
-    model = pickle.load(model_file)
-
+# Homepage route, which is biography.html
 @app.route('/')
-def index():
-    return render_template('index.html')
+def home():
+    return render_template('biography.html')  # Use biography.html as the homepage
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    # Extract features from form
-    features = [
-        float(request.form['baseline_value']),
-        float(request.form['accelerations']),
-        float(request.form['fetal_movement']),
-        float(request.form['uterine_contractions']),
-        float(request.form['light_decelerations']),
-        float(request.form['severe_decelerations']),
-        float(request.form['prolongued_decelerations']),
-        float(request.form['abnormal_short_term_variability']),
-        float(request.form['mean_value_of_short_term_variability']),
-        float(request.form['percentage_of_time_with_abnormal_long_term_variability']),
-        float(request.form['mean_value_of_long_term_variability']),
-        float(request.form['histogram_width']),
-        float(request.form['histogram_min']),
-        float(request.form['histogram_max']),
-        float(request.form['histogram_number_of_peaks']),
-        float(request.form['histogram_number_of_zeroes']),
-        float(request.form['histogram_mode']),
-        float(request.form['histogram_mean']),
-        float(request.form['histogram_median']),
-        float(request.form['histogram_variance']),
-        float(request.form['histogram_tendency']),
-    ]
-    
-    # Convert features to a NumPy array and make prediction
-    features_array = np.array(features).reshape(1, -1)
-    prediction = model.predict(features_array)[0]
+# Explicit Biography route
+@app.route('/biography')
+def biography():
+    return render_template('biography.html')  # Biography page
 
-    # Print prediction for debugging
-    print("Prediction:", prediction)
-    
-    # Render the result on the HTML page
-    return render_template('index.html', prediction=f'Predicted Fetal Health Status: {prediction}')
+# Fetal Health Prediction page
+@app.route('/prediction', methods=['GET', 'POST'])
+def prediction():
+    return render_template('prediction.html')  # Prediction page
+
+# Resume page
+@app.route('/resume')
+def resume():
+    return render_template('resume.html')  # Resume page
+
+# General Projects page (if you want to add this later)
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')  # General Projects page
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5011)

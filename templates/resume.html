@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block title %}Resume - Jivan Adhikari{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-image: url("{{ url_for('static', filename='images/resume bg.jpg') }}");
+        background-size: cover; /* Cover the entire background */
+        background-position: center; /* Center the image */
+        margin: 0; /* Remove default margin */
+    }
+    .resume-container {
+        max-width: 900px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        width: 90%; /* Use percentage width */
+        margin: 50px auto; /* Center container horizontally with margin */
+        text-align: left; /* Align text to the left */
+    }
+    h1 {
+        color: #333;
+        text-align: center; /* Center header text */
+    }
+    h2 {
+        margin-top: 20px;
+        color: #333;
+    }
+    p {
+        font-size: 18px;
+        line-height: 1.8;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="resume-container">
+    <h1>Resume</h1>
+    <h2>Name: JIVAN ADHIKARI</h2>
+    <p>Email: Jivanadhikari90@outlook.com</p>
+    <p>Address: 23 Parkhurst street apt 05, Lebanon</p>
+    <p>Phone: (318) 5476301</p>
+    
+    <h2>Professional Summary</h2>
+    <p>Knowledgeable, hardworking, and skilled Medical Laboratory Professional with a strong history of doing all the clinical lab-related tests ordered. Focused on helping physicians diagnose, treat, and prevent disease by providing accurate, timely results. Enthusiastic about learning new skills that directly or indirectly help the health sector.</p>
+
+    <h2>Skills</h2>
+    <ul>
+        <li>Python, including NumPy, Pandas, and scikit-learn</li>
+        <li>Data visualization and Data Cleaning</li>
+        <li>MATLAB, SQL, MS Excel</li>
+        <li>Supervised learning: Linear and logistic regression</li>
+        <li>Unsupervised learning: K-means Clustering, principal component analysis</li>
+    </ul>
+
+    <h2>Education</h2>
+    <p>University of Louisiana Monroe (May 2021): Bachelor in Medical Laboratory Science (3.2 GPA)</p>
+
+    <h2>Work Experience</h2>
+    <p><strong>Blood Bank Technologist, Mary Hitchcock Memorial Hospital, Lebanon (June 2021-present)</strong></p>
+    <ul>
+        <li>Perform all tests of specimens based on recent policies and procedures established by the department utilizing specific instruments and reagents.</li>
+        <li>Observe and analyze test results closely and investigate further based on requirements.</li>
+        <li>Perform daily, weekly, and monthly quality control and maintenance of instruments and reagents as required by the lab.</li>
+        <li>Issue blood products to patients based on requests, performing required tests with proper clerical checks based on policies and procedures.</li>
+        <li>Perform basic troubleshooting in automated analyzers like NEO and Echo used in the lab.</li>
+    </ul>
+    
+    <p><strong>Librarian, University of Louisiana Monroe, Monroe (Aug 2018-May 2021)</strong></p>
+    <ul>
+        <li>Manage circulation of library materials, proper inventory, registration of students, and monitor laboratory equipment with proper maintenance.</li>
+    </ul>
+
+    <h2>Certifications</h2>
+    <ul>
+        <li>Mathematical Foundations of Machine Learning, Udemy</li>
+        <li>Intermediate Python, Datacamp</li>
+        <li>Data Manipulation with Pandas and NumPy, Datacamp</li>
+        <li>Introduction to Data Visualization, Datacamp</li>
+        <li>Intermediate Data Visualization with Seaborn, Datacamp</li>
+        <li>Cleaning Data in Python, Datacamp</li>
+        <li>Machine Learning, Coursera (Stanford University)</li>
+    </ul>
+
+    <h2>Involvements</h2>
+    <p>Worked as Treasurer of the Nepalese Student Association and a member of Global Ambassador ULM.</p>
+</div>
+{% endblock %}

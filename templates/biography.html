@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block title %}Biography - Jivan Adhikari{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-image: url("{{ url_for('static', filename='images/biography bg.jpeg') }}");
+        background-size: cover; /* Cover the entire background */
+        background-position: center; /* Center the image */
+        background-repeat: no-repeat; /* Prevent repetition */
+        height: 100vh; /* Full viewport height */
+        margin: 0; /* Remove default margin */
+    }
+    .bio-container {
+        display: flex;
+        align-items: center;
+        max-width: 900px;
+        margin: 30px auto;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    .bio-image {
+        flex: 0 0 150px; /* Fixed width for the image */
+        margin-right: 20px; /* Space between image and text */
+    }
+    .bio-image img {
+        width: 100%; /* Make the image responsive */
+        border-radius: 50%; /* Circle shape */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .bio-text {
+        flex: 1; /* Take the remaining space */
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    p {
+        font-size: 18px;
+        line-height: 1.8;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="bio-container">
+    <div class="bio-image">
+        <img src="{{ url_for('static', filename='images/Jivan.JPG') }}" alt="Profile Image">
+    </div>
+    <div class="bio-text">
+        <h1>About Me</h1>
+        <p>My name is Jivan Adhikari, a medical lab scientist based in New Hampshire. With a deep love for nature, I spend my free time hiking, exploring the outdoors, and indulging in creative pursuits like writing and sketching.</p>
+        <p>Inspired by the fascinating world of machine learning, I've embarked on a career transition. This master's program has ignited my passion for data, and I'm eager to explore the exciting possibilities it holds. Please feel free to review my resume on the next tab and connect with me on LinkedIn for more information.</p>
+    </div>
+</div>
+{% endblock %}
