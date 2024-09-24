@@ -5,11 +5,11 @@
 <style>
     body {
         background-image: url("{{ url_for('static', filename='images/fetal_image.jpg') }}") !important;
-        background-size: cover; /* Cover the entire background */
-        background-position: center; /* Center the image */
+        background-size: cover;
+        background-position: center;
     }
     .prediction-content {
-        background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+        background: rgba(255, 255, 255, 0.8);
         padding: 30px;
         border-radius: 8px;
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -22,13 +22,19 @@
         font-size: 2em;
         margin-bottom: 20px;
     }
+    .small-text {
+        font-size: 0.9em;
+        color: #555;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
     form {
         margin: 20px 0;
     }
     label {
         display: block;
         margin: 10px 0 5px;
-        font-weight: 600; /* Bolder font for labels */
+        font-weight: 600;
         color: #333;
     }
     input[type="number"], input[type="submit"] {
@@ -37,41 +43,48 @@
         margin: 5px 0 10px;
         border: 1px solid #ddd;
         border-radius: 4px;
-        font-size: 16px; /* Slightly larger font size */
+        font-size: 16px;
     }
     input[type="number"] {
-        background-color: #f9f9f9; /* Light gray for input fields */
+        background-color: #f9f9f9;
     }
     input[type="submit"] {
-        background-color: #007BFF; /* Blue */
+        background-color: #007BFF;
         color: white;
-        font-weight: 600; /* Bolder font for button */
+        font-weight: 600;
         cursor: pointer;
     }
     input[type="submit"]:hover {
-        background-color: #0056b3; /* Darker blue */
+        background-color: #0056b3;
     }
     .result {
         margin-top: 20px;
         padding: 10px;
         border: 1px solid #ddd;
         border-radius: 4px;
-        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent result background */
+        background-color: rgba(255, 255, 255, 0.8);
         color: black;
-        text-align: center; /* Center align the result text */
+        text-align: center;
     }
     footer {
         text-align: center;
         margin-top: auto;
         padding: 20px;
-        background-color: #E0E0E0; /* Light gray */
+        background-color: #E0E0E0;
         color: black;
     }
 </style>
 
 <div class="prediction-content">
     <h1>Fetal Health Prediction Model</h1>
-    <form action="/predict" method="post">
+    
+    <p class="small-text">
+        Cardiotocography (CTG) is a critical tool for monitoring fetal heart rate and uterine contractions during pregnancy and labor. It helps clinicians detect potential issues early, such as oxygen deprivation, which is vital for ensuring the well-being of both mother and baby. This project focuses on using CTG data to predict fetal health status by classifying it into three categories: Normal, Suspect, and Pathological. Early identification of these conditions can guide timely medical interventions.
+        <br><br>
+        To address this, a machine learning model was developed to analyze key CTG features and classify fetal health. Using supervised learning, the model accurately identifies patterns and categorizes fetal health. It was evaluated through metrics such as accuracy and precision, showing reliable performance, especially in identifying pathological cases. The model provides a proactive approach to improving healthcare decisions by offering timely insights into fetal health conditions.
+    </p>
+
+    <form action="/prediction" method="post">
         <label for="baseline_value">Baseline Value:</label>
         <input type="number" step="any" id="baseline_value" name="baseline_value" required>
 
@@ -137,9 +150,9 @@
 
         <input type="submit" value="Predict">
     </form>
+
     <div class="result">
-        <h2>Prediction Result</h2>
-        <p>{{ prediction if prediction else "Awaiting result..." }}</p>
+        <h2>Prediction Result: {{ prediction }}</h2>
     </div>
 </div>
 
