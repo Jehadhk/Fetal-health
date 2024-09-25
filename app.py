@@ -49,6 +49,9 @@ def prediction():
 
         # Make prediction using the model
         prediction_result = model.predict([form_data])[0]
+        # Map the prediction to the corresponding fetal health category
+        prediction_mapping = {1.0: "Normal", 2.0: "Suspect", 3.0: "Pathological"}
+        prediction_text = prediction_mapping.get(prediction, "Unknown")
 
     return render_template('prediction.html', prediction=prediction_result)  # Pass prediction to the template
 
