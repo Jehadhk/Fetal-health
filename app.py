@@ -19,7 +19,7 @@ def biography():
 # Fetal Health Prediction page route
 @app.route('/prediction', methods=['GET', 'POST'])
 def prediction():
-    prediction_result = None  # Default value for prediction result
+    prediction_text = None  # Default value for prediction result
 
     if request.method == 'POST':
         # Get form data and convert to float
@@ -51,9 +51,9 @@ def prediction():
         prediction_result = model.predict([form_data])[0]
         # Map the prediction to the corresponding fetal health category
         prediction_mapping = {1.0: "Normal", 2.0: "Suspect", 3.0: "Pathological"}
-        prediction_text = prediction_mapping.get(prediction, "Unknown")
+        prediction_text = prediction_mapping.get(prediction_result, "Unknown")
 
-    return render_template('prediction.html', prediction=prediction_result)  # Pass prediction to the template
+    return render_template('prediction.html', prediction=prediction_text)  
 
 # Resume page route
 @app.route('/resume')
